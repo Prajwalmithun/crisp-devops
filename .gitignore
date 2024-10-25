@@ -1,0 +1,64 @@
+# General
+*.log
+*.tmp
+*.pid
+*.swp
+*.swo
+*.DS_Store
+.env
+.env.*
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# Go
+*.exe
+*.out
+*.test
+/vendor/
+/coverage.out
+
+# Docker
+docker-compose.override.yml
+*.env
+.dockerignore
+
+# Kubernetes
+.kube/
+kubectl.kustomize
+
+# Helm
+*.tgz
+charts/
+templates/*.rendered
+
+# GitHub Actions
+.github/workflows/*.log
+
+# Node.js (for future services)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# VS Code settings
+.vscode/
+.history/
+
+# Terraform (if you add infrastructure as code in future)
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# OpenTelemetry and observability logs
+otel-collector-logs/
+otel-traces/
+otel-metrics/
