@@ -1,0 +1,10 @@
+# Source: https://technote-space.github.io/toc-generator/
+# Generation of Table of Contents
+on: push
+name: TOC Generator
+jobs:
+  generateTOC:
+    name: TOC Generator
+    runs-on: ubuntu-latest
+    steps:
+      - uses: technote-space/toc-generator@v4
