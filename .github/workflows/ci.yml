@@ -25,7 +25,7 @@ jobs:
          with:
           push: true
           context: "{{defaultContext}}:microservices/python-microservice"  # Set the build context to the directory with the Dockerfile
-        #   file: ./microservices/python-microservice/Dockerfile  # Specify the path to the Dockerfile
+          platforms: linux/amd64, linux/arm64
           tags: ${{ vars.DOCKERHUB_USERNAME }}/python-ms-crisp-devops:latest    # Use secrets for sensitive info
 
 
