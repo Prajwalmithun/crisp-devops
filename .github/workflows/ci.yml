@@ -50,3 +50,5 @@ jobs:
           context: "{{defaultContext}}:microservices/golang-microservice"  # Set the build context to the directory with the Dockerfile
           platforms: linux/amd64, linux/arm64
           tags: ${{ vars.DOCKERHUB_USERNAME }}/golang-ms-crisp-devops:latest    # Use secrets for sensitive info
+
+          
