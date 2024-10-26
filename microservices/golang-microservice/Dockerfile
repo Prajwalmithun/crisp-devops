@@ -20,7 +20,7 @@ RUN go mod download
 COPY *.go .
 
 # Build the go app 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /golang-ms
+RUN go build -o /golang-ms
 
 # Expose the port
 EXPOSE 8888
