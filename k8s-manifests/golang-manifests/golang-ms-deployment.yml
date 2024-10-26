@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: golang-ms-deployment
+  name: golang-ms-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: golang-ms-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: golang-ms-deployment
+    spec:
+      containers:
+      - image: prajwal3498/golang-ms-crisp-devops:latest
+        name: golang-ms-crisp-devops
+        resources: {}
+status: {}
