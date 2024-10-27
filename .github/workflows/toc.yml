@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: technote-space/toc-generator@v4
         with:
-            GITHUB_TOKEN ${{ secrets.GH_ACCESS_TOKEN_FOR_TOC_GENERATION }}
+            GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN_FOR_TOC_GENERATION }}
