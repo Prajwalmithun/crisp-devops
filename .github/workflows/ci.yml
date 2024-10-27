@@ -6,6 +6,7 @@ on:
 
 jobs:
   build_push_python_ms:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
@@ -29,6 +30,7 @@ jobs:
           tags: ${{ vars.DOCKERHUB_USERNAME }}/python-ms-crisp-devops:latest    # Use secrets for sensitive info
   
   build_push_golang_ms:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
@@ -51,4 +53,3 @@ jobs:
           platforms: linux/amd64, linux/arm64
           tags: ${{ vars.DOCKERHUB_USERNAME }}/golang-ms-crisp-devops:latest    # Use secrets for sensitive info
 
-          
