@@ -1,0 +1,4 @@
+# kustomize/base/kustomization.yaml
+resources:
+  - golang-ms-deployment.yml
+  - golang-ms-service.yml

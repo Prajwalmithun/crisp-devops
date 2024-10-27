@@ -1,4 +1,4 @@
-# kustomize/overlays/dev/kustomization.yaml
+# python-manifests/overlays/dev/kustomization.yaml
 resources:
   - ../../base
 

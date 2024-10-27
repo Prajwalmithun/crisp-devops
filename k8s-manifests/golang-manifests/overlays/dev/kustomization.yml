@@ -1,0 +1,14 @@
+# golang-manifests/overlays/dev/kustomization.yaml
+resources:
+  - ../../base
+
+patches:
+  - target:
+      kind: Deployment
+      name: golang-ms-deployment
+    path: golang-ms-deployment-patch.yml
+  
+  - target:
+      kind: Service
+      name: golang-ms-svc
+    path: golang-ms-service-patch.yml

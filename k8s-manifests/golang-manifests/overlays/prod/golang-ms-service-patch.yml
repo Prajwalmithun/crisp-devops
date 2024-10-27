@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: golang-ms-deployment
+    env: prod
+  name: golang-ms-svc

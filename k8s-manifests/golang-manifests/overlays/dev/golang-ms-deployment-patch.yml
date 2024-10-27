@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: golang-ms-deployment
+    env: dev
+  name: golang-ms-deployment
+spec:
+  replicas: 2
