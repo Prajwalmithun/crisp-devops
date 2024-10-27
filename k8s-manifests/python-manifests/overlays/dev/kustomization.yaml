@@ -1,0 +1,14 @@
+# kustomize/overlays/dev/kustomization.yaml
+resources:
+  - ../../base
+
+patches:
+  - target:
+      kind: Deployment
+      name: python-ms-deployment
+    path: python-ms-deployment-patch.yml
+  
+  - target:
+      kind: Service
+      name: python-ms-svc
+    path: python-ms-service-patch.yml

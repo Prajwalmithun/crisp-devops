@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: python-ms-deployment
+    env: dev
+  name: python-ms-deployment-dev
+spec:
+  replicas: 2

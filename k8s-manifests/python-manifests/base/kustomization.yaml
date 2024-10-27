@@ -1,0 +1,4 @@
+# kustomize/base/kustomization.yaml
+resources:
+  - python-ms-deployment.yml
+  - python-ms-service.yml
