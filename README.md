@@ -8,3 +8,6 @@ This project covers everything about DevOps
 3) Kubernetes - Kustomize, Helm 
 4) Observability - Prometheus & Grafana, EFK stack, Jaeger 
 5) GitOps - ArgoCD
+
+<!--doc_begin-->
+<!--doc_end-->
