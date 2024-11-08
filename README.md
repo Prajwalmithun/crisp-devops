@@ -17,5 +17,8 @@ This project covers everything about DevOps
 4) Observability - Prometheus & Grafana, EFK stack, Jaeger 
 5) GitOps - ArgoCD
 
+# Architecture Diagarm 
+
+![Architecture Diagram](./Diagrams/architecture-diagram-v1.png)
 <!--doc_begin-->
 <!--doc_end-->
