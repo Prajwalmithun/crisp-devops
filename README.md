@@ -3,6 +3,7 @@
 **Table of Contents**
 
 - [Crisp DevOps](#crisp-devops)
+- [Architecture Diagarm](#architecture-diagarm)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
