@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: stackrox/kube-linter-action@v1.0.4
         with:
-            directory: ../k8s-manifests-helm
+            directory: k8s-manifests-helm
             # config: .kube-linter/config.yaml
             format: sarif
             output-file: kube-linter.sarif
