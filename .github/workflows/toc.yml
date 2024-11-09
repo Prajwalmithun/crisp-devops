@@ -5,7 +5,7 @@ on: push
 
 jobs:
   generateTOC:
-    if: true
+    if: false
     name: TOC Generator
     runs-on: ubuntu-latest
     steps:
