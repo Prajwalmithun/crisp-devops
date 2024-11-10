@@ -62,7 +62,8 @@ jobs:
           # Extract the short SHA for easier reading
           TAG=${{ github.run_id }}-${{ github.sha }}
           # Use yq or sed to update the image tag in values.yaml
-          yq eval ".image.tag = \"${TAG}\"" -i k8s-manifests-helm/golang-helm/values.yaml
+          yq eval ".image.tag = \"${TAG}\"" -i ./k8s-manifests-helm/golang-helm/values.yaml
+          pwd
           # sed -i "s/tag:.*/tag: ${TAG}/" k8s-manifests-helm/golang-helm/values.yaml
 
       # - name: Commit changes to values.yaml
