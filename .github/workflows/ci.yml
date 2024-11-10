@@ -57,9 +57,12 @@ jobs:
     if: true
     runs-on: ubuntu-24.04
     steps:
+      - name: Present working directory
+        run: pwd
+        
       - name: List files 
         run: ls -R
-        
+
       - name: Update Helm `values.yaml` with new image tag
         run: |
           # Extract the short SHA for easier reading
