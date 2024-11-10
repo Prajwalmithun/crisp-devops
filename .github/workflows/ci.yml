@@ -55,13 +55,13 @@ jobs:
       
   update_helm_tags_golang:
     if: true
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v3
         with:
           ref: main
-          
+
       - name: Present working directory
         run: pwd
 
@@ -77,31 +77,31 @@ jobs:
           ls -lrth
           yq eval ".image.tag = \"${TAG}\"" -i ${{ github.workspace }}/k8s-manifests-helm/golang-helm/values.yaml
           
-          # sed -i "s/tag:.*/tag: ${TAG}/" k8s-manifests-helm/golang-helm/values.yaml
+          # sed -i "s/tag:.*/tag: ${TAG}/" -i ${{ github.workspace }}/k8s-manifests-helm/golang-helm/values.yaml
 
-      # - name: Commit changes to values.yaml
-      #   run: |
-      #     git config --global user.email "github-actions@github.com"
-      #     git config --global user.name "GitHub Actions"
-      #     git add helm-charts/golang-ms/values.yaml
-      #     git commit -m "Update image tag to ${GITHUB_SHA::8}"
-      #     git push
+      - name: Commit changes to values.yaml
+        run: |
+          git config --global user.email ${{ vars.GH_EMAIL }}
+          git config --global user.name ${{ vars.GH_USERNAME }}
+          git add ./k8s-manifests-helm/golang-helm/values.yaml
+          git commit -m "Update image tag to ${{ github.run_id }}-${{ github.sha }}"
+          git push
 
-      # - name: Commit and push changes
-      #   uses: devops-infra/action-commit-push@v0.3
-      #   with:
-      #     github_token: ${{ secrets.IMAGE_TAG_UPDATE_GH_TOKEN }}
-      #     commit_message: Updated image tag of Golang helm chart 
+      - name: Commit and push changes
+        uses: devops-infra/action-commit-push@v0.3
+        with:
+          github_token: ${{ secrets.IMAGE_TAG_UPDATE_GH_TOKEN }}
+          commit_message: Updated image tag of Golang helm chart 
 
         # Source: https://github.com/marketplace/actions/create-pull-request
-      - name: Create Pull Request (Commit and create PR)
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.IMAGE_TAG_UPDATE_GH_TOKEN }}
-          commit-message: Updated image tag of Golang helm chart
-          title: Updated image tag of Golang helm chart
-          body: |
-            - Updated docker image tags with ${{ github.run_id }}-${{ github.sha }} values
+      # - name: Create Pull Request (Commit and create PR)
+      #   uses: peter-evans/create-pull-request@v7
+      #   with:
+      #     token: ${{ secrets.IMAGE_TAG_UPDATE_GH_TOKEN }}
+      #     commit-message: Updated image tag of Golang helm chart
+      #     title: Updated image tag of Golang helm chart
+      #     body: |
+      #       - Updated docker image tags with ${{ github.run_id }}-${{ github.sha }} values
 
         
 
