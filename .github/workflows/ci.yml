@@ -6,7 +6,7 @@ on:
 
 jobs:
   build_push_python_ms:
-    if: true
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
@@ -30,7 +30,7 @@ jobs:
           tags: ${{ vars.DOCKERHUB_USERNAME }}/python-ms-crisp-devops:${{ github.run_id }}-${{ github.sha }} # Use secrets for sensitive info
 
   build_push_golang_ms:
-    if: true
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
@@ -54,7 +54,7 @@ jobs:
           tags: ${{ vars.DOCKERHUB_USERNAME }}/golang-ms-crisp-devops:${{ github.run_id }}-${{ github.sha }} # Use secrets for sensitive info
 
   update_helm_tags_golang:
-    if: true
+    if: false
     needs: build_push_golang_ms
     runs-on: ubuntu-latest
     steps:
@@ -105,7 +105,7 @@ jobs:
       #       - Updated docker image tags with ${{ github.run_id }}-${{ github.sha }} values
 
   update_helm_tags_python:
-    if: true
+    if: false
     needs: build_push_python_ms
     runs-on: ubuntu-latest
     steps:
