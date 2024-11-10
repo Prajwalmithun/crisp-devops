@@ -54,7 +54,7 @@ jobs:
           tags: ${{ vars.DOCKERHUB_USERNAME }}/golang-ms-crisp-devops:${{ github.run_id }}-${{ github.sha }}    # Use secrets for sensitive info
       
   update_helm_tags_golang:
-    if: false
+    if: true
     runs-on: ubuntu-latest
     steps:
       - name: Update Helm `values.yaml` with new image tag
