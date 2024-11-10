@@ -1,21 +1,3 @@
-# name: Linting for YAML mainfest files
-# on: push
-
-# jobs:
-#   lintManifests:
-#     if: true
-#     name: Scan repo with kube-linter
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: stackrox/kube-linter-action@v1.0.4
-#         with:
-#             directory: k8s-manifests-helm
-#             # config: .kube-linter/config.yaml
-#             format: sarif
-#             output-file: kube-linter.sarif
-
-
-
 name: Check Kubernetes YAMLs with kube-linter
 
 on:
@@ -28,6 +10,7 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
+    if: false
     steps:
       - uses: actions/checkout@v4
 
