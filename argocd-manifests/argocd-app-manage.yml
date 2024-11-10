@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crispdevops
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ./argocd-manifests/microservices-app
+    repoURL: https://github.com/Prajwalmithun/crisp-devops.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - Prune=true
+    - CreateNamespace=true

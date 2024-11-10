@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: python
+  namespace: argocd
+spec:
+  destination:
+    namespace: python-ms
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values.yaml
+    path: k8s-manifests-helm/python-helm
+    repoURL: https://github.com/Prajwalmithun/crisp-devops.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - Prune=true
