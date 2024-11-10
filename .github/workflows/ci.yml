@@ -6,7 +6,7 @@ on:
 
 jobs:
   build_push_python_ms:
-    if: true
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
@@ -63,6 +63,7 @@ jobs:
           TAG=${{ github.run_id }}-${{ github.sha }}
           # Use yq or sed to update the image tag in values.yaml
           pwd
+          ls -lrth
           yq eval ".image.tag = \"${TAG}\"" -i ./k8s-manifests-helm/golang-helm/values.yaml
           
           # sed -i "s/tag:.*/tag: ${TAG}/" k8s-manifests-helm/golang-helm/values.yaml
