@@ -16,6 +16,9 @@ spec:
     repoURL: https://github.com/Prajwalmithun/crisp-devops.git
     targetRevision: HEAD
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 
     syncOptions:
     - Prune=true
     - CreateNamespace=true
