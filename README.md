@@ -21,5 +21,31 @@ This project covers everything about DevOps
 # Architecture Diagarm 
 
 ![Architecture Diagram](./Diagrams/architecture-diagram-v1.png)
+
+# ArgoCD
+
+![ArgoCD App Tree](./Diagrams/argocd-app-tree.png)
+
+![ArgoCD App List](./Diagrams/argocd-apps-list.png)
+
+# Prometheus ArgoCD Metrics
+
+![Prometheus](./Diagrams/prometheus-argocd-metrics.png)
+
+# Grafana Dashboards
+
+![Grafana](./Diagrams/grafana-dashboard.png)
+
+# Microservices
+
+## Python
+
+![Pythonms](./Diagrams/python-ms.png)
+
+## Golang 
+
+![Golangms](./Diagrams/golang-ms.png)
+
+
 <!--doc_begin-->
 <!--doc_end-->
