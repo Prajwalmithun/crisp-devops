@@ -18,17 +18,17 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}      # Use secrets for sensitive info
-          password: ${{ secrets.DOCKERHUB_TOKEN }}      # Use secrets for sensitive info
+          username: ${{ vars.DOCKERHUB_USERNAME }} # Use secrets for sensitive info
+          password: ${{ secrets.DOCKERHUB_TOKEN }} # Use secrets for sensitive info
 
-      -  name: Build and push
-         uses: docker/build-push-action@v6
-         with:
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
           push: true
-          context: "{{defaultContext}}:microservices/python-microservice"  # Set the build context to the directory with the Dockerfile
+          context: "{{defaultContext}}:microservices/python-microservice" # Set the build context to the directory with the Dockerfile
           platforms: linux/amd64, linux/arm64
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/python-ms-crisp-devops:${{ github.run_id }}-${{ github.sha }}    # Use secrets for sensitive info
-  
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/python-ms-crisp-devops:${{ github.run_id }}-${{ github.sha }} # Use secrets for sensitive info
+
   build_push_golang_ms:
     if: false
     runs-on: ubuntu-latest
@@ -42,17 +42,17 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}      # Use secrets for sensitive info
-          password: ${{ secrets.DOCKERHUB_TOKEN }}      # Use secrets for sensitive info
+          username: ${{ vars.DOCKERHUB_USERNAME }} # Use secrets for sensitive info
+          password: ${{ secrets.DOCKERHUB_TOKEN }} # Use secrets for sensitive info
 
-      -  name: Build and push
-         uses: docker/build-push-action@v6
-         with:
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
           push: true
-          context: "{{defaultContext}}:microservices/golang-microservice"  # Set the build context to the directory with the Dockerfile
+          context: "{{defaultContext}}:microservices/golang-microservice" # Set the build context to the directory with the Dockerfile
           platforms: linux/amd64, linux/arm64
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/golang-ms-crisp-devops:${{ github.run_id }}-${{ github.sha }}    # Use secrets for sensitive info
-      
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/golang-ms-crisp-devops:${{ github.run_id }}-${{ github.sha }} # Use secrets for sensitive info
+
   update_helm_tags_golang:
     if: true
     runs-on: ubuntu-latest
@@ -62,11 +62,11 @@ jobs:
         with:
           ref: main
 
-      - name: Present working directory
-        run: pwd
+      # - name: Present working directory
+      #   run: pwd
 
-      - name: List files 
-        run: ls -R
+      # - name: List files
+      #   run: ls -R
 
       - name: Update Helm `values.yaml` with new image tag
         run: |
@@ -76,7 +76,7 @@ jobs:
           pwd
           ls -lrth
           yq eval ".image.tag = \"${TAG}\"" -i ${{ github.workspace }}/k8s-manifests-helm/golang-helm/values.yaml
-          
+
           # sed -i "s/tag:.*/tag: ${TAG}/" -i ${{ github.workspace }}/k8s-manifests-helm/golang-helm/values.yaml
 
       - name: Commit changes to values.yaml
@@ -91,7 +91,7 @@ jobs:
         uses: devops-infra/action-commit-push@v0.3
         with:
           github_token: ${{ secrets.IMAGE_TAG_UPDATE_GH_TOKEN }}
-          commit_message: Updated image tag of Golang helm chart 
+          commit_message: Updated image tag of Golang helm chart
 
         # Source: https://github.com/marketplace/actions/create-pull-request
       # - name: Create Pull Request (Commit and create PR)
@@ -103,5 +103,52 @@ jobs:
       #     body: |
       #       - Updated docker image tags with ${{ github.run_id }}-${{ github.sha }} values
 
-        
+  update_helm_tags_python:
+    if: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
 
+      # - name: Present working directory
+      #   run: pwd
+
+      # - name: List files
+      #   run: ls -R
+
+      - name: Update Helm `values.yaml` with new image tag
+        run: |
+          # Extract the short SHA for easier reading
+          TAG=${{ github.run_id }}-${{ github.sha }}
+          # Use yq or sed to update the image tag in values.yaml
+          pwd
+          ls -lrth
+          yq eval ".image.tag = \"${TAG}\"" -i ${{ github.workspace }}/k8s-manifests-helm/python-helm/values.yaml
+
+          # sed -i "s/tag:.*/tag: ${TAG}/" -i ${{ github.workspace }}/k8s-manifests-helm/python-helm/values.yaml
+
+      - name: Commit changes to values.yaml
+        run: |
+          git config --global user.email ${{ vars.GH_EMAIL }}
+          git config --global user.name ${{ vars.GH_USERNAME }}
+          git add ./k8s-manifests-helm/python-helm/values.yaml
+          git commit -m "Update image tag to ${{ github.run_id }}-${{ github.sha }}"
+          git push
+
+      - name: Commit and push changes
+        uses: devops-infra/action-commit-push@v0.3
+        with:
+          github_token: ${{ secrets.IMAGE_TAG_UPDATE_GH_TOKEN }}
+          commit_message: Updated image tag of Python helm chart
+
+        # Source: https://github.com/marketplace/actions/create-pull-request
+      # - name: Create Pull Request (Commit and create PR)
+      #   uses: peter-evans/create-pull-request@v7
+      #   with:
+      #     token: ${{ secrets.IMAGE_TAG_UPDATE_GH_TOKEN }}
+      #     commit-message: Updated image tag of Golang helm chart
+      #     title: Updated image tag of Python helm chart
+      #     body: |
+      #       - Updated docker image tags with ${{ github.run_id }}-${{ github.sha }} values
