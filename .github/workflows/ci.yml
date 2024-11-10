@@ -55,6 +55,7 @@ jobs:
 
   update_helm_tags_golang:
     if: true
+    needs: build_push_golang_ms
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
@@ -105,6 +106,7 @@ jobs:
 
   update_helm_tags_python:
     if: true
+    needs: build_push_python_ms
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
