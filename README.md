@@ -4,6 +4,12 @@
 
 - [Crisp DevOps](#crisp-devops)
 - [Architecture Diagarm](#architecture-diagarm)
+- [ArgoCD](#argocd)
+- [Prometheus ArgoCD Metrics](#prometheus-argocd-metrics)
+- [Grafana Dashboards](#grafana-dashboards)
+- [Microservices](#microservices)
+  - [Python](#python)
+  - [Golang](#golang)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
