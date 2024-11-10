@@ -57,9 +57,14 @@ jobs:
     if: true
     runs-on: ubuntu-24.04
     steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          
       - name: Present working directory
         run: pwd
-        
+
       - name: List files 
         run: ls -R
 
