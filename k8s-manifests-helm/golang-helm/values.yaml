@@ -7,7 +7,7 @@ image:
   repository: prajwal3498/golang-ms-crisp-devops
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "11762955203-4e365f4630cba824dcf9cd6774a16f83e44d3d61"
+  tag: "11762967676-ee73822075188ea79b169c0746df9a34a20fb64c"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
