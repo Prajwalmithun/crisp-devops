@@ -20,14 +20,15 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }} # Use secrets for sensitive info
           password: ${{ secrets.DOCKERHUB_TOKEN }} # Use secrets for sensitive info
+      
 
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          context: "{{defaultContext}}:microservices/python-microservice" # Set the build context to the directory with the Dockerfile
-          platforms: linux/amd64, linux/arm64
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/python-ms-crisp-devops:${{ github.run_id }}-${{ github.sha }} # Use secrets for sensitive info
+      # - name: Build and push
+      #   uses: docker/build-push-action@v6
+      #   with:
+      #     push: true
+      #     context: "{{defaultContext}}:microservices/python-microservice" # Set the build context to the directory with the Dockerfile
+      #     platforms: linux/amd64, linux/arm64
+      #     tags: ${{ vars.DOCKERHUB_USERNAME }}/python-ms-crisp-devops:${{ github.run_id }}-${{ github.sha }} # Use secrets for sensitive info
 
   build_push_golang_ms:
     if: false
