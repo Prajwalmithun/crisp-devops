@@ -34,6 +34,6 @@ This will install the Operator into the cluster, which will await a K8sGPT resou
 
 ## Update the baseUrl in `backend-ollama-local.yaml` to point to the ollama server and apply the yaml file
 ```bash
-kubectl apply -f backend-ollama-local.yaml
+kubectl apply -f backend-ollama-local.yml
 ```
 
