@@ -28,7 +28,16 @@ To install the operator, run the following command:
 ```bash
 helm repo add k8sgpt https://charts.k8sgpt.ai/
 helm repo update
-helm install release k8sgpt/k8sgpt-operator -n k8sgpt-operator-system --create-namespace
+# helm install release k8sgpt/k8sgpt-operator -n k8sgpt-operator-system --create-namespace
+
+# k8sGPT with Prometheus and Grafana
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring --create-namespace
+
+helm install release k8sgpt/k8sgpt-operator -n k8sgpt-operator-system --create-namespace --set interplex.enabled=true --set grafanaDashboard.enabled=true --set serviceMonitor.enabled=true
+
 ```
 
 This will install the Operator into the cluster, which will await a K8sGPT resource before anything happens.
@@ -64,7 +73,7 @@ k8sgpt filters list
 
 
 
-## Option 2 - Run Deepseek model (NOT WORKING)
+## Option 2 - Run Deepseek model (WORKING)
 
 Install ollama on MacOS
 ```bash
@@ -87,4 +96,14 @@ ollama create praj-deepseek-r1 -f deepseek-model/Modelfile
 ollama run praj-deepseek-r1
 ```
 
+## Update the baseUrl in `backend-deepseek-local.yaml` to point to the ollama server and apply the yaml file
+```bash
+kubectl apply -f backend-deepseek-local.yaml
+```
 
+This might take anywhere between 10-30 min depending on your laptop configurtion and deepseek model size
+
+## Looking at the results of the analysis made by k8sgpt 
+```bash
+kubectl get result -n k8sgpt-operator-system -o json | jq .
+```
