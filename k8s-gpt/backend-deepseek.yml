@@ -1,0 +1,40 @@
+# apiVersion: core.k8sgpt.ai/v1alpha1
+# kind: K8sGPT
+# metadata:
+#   name: k8sgpt-deepseek
+#   namespace: k8sgpt-operator-system
+# spec:
+#   ai:
+#     enabled: true
+#     model: praj-deepseek-r1
+#     backend: localai
+#     baseUrl: "http://10.0.0.38:11434/v1"
+#     # secret:
+#     #   name: k8sgpt-localai-secret
+#     #   key: localai-api-key
+#     # anonymized: false
+#     # language: english
+#   # integrations:
+#   #   trivy:
+#   #     enabled: true
+#   #     namespace: default
+#   noCache: false
+#   version: v0.3.41
+#   # filters: ["Pod"]
+#   repository: ghcr.io/k8sgpt-ai/k8sgpt
+
+
+apiVersion: core.k8sgpt.ai/v1alpha1
+kind: K8sGPT
+metadata:
+  name: k8sgpt-deepseek
+  namespace: k8sgpt-operator-system
+spec:
+  ai:
+    enabled: true
+    model: deepseek-r1:8b
+    backend: localai
+    baseUrl: "http://10.0.0.38:11434/v1"
+  noCache: false
+  version: v0.3.41
+  repository: ghcr.io/k8sgpt-ai/k8sgpt

@@ -15,7 +15,10 @@ Run the model
 ```bash
 ollama run llama3
 ```
-
+# Create a ChatBox UI using open-web-ui
+```bash
+docker run -d -p 9783:8080 -v open-webui:/app/backend/data --name open-webui ghcr.io/open-webui/open-webui:main
+```
 
 # INSTALLATION
 
@@ -36,4 +39,52 @@ This will install the Operator into the cluster, which will await a K8sGPT resou
 ```bash
 kubectl apply -f backend-ollama-local.yml
 ```
+
+## Looking at the results of the analysis made by k8sgpt 
+```bash
+kubectl get result -n k8sgpt-operator-system -o json | jq .
+```
+
+# Secrity scanning using Trivy
+
+```bash
+ k8sgpt integration list
+```
+
+## Activate Trivy 
+```bash
+k8sgpt integration activate trivy
+```
+
+## New filters are added now 
+ConfigAuditReport (integration) and VulnerabilityReport (integration)
+```bash
+k8sgpt filters list
+```
+
+
+
+## Option 2 - Run Deepseek model (NOT WORKING)
+
+Install ollama on MacOS
+```bash
+brew install ollama
+```
+
+Start ollama server 
+```bash
+OLLAMA_HOST=0.0.0.0  ollama serve
+```
+
+Run the model = Deepseek
+```bash
+ollama run deepseek-r1:8b
+```
+
+To run custom Model
+```bash
+ollama create praj-deepseek-r1 -f deepseek-model/Modelfile
+ollama run praj-deepseek-r1
+```
+
 

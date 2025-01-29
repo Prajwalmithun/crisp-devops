@@ -14,9 +14,13 @@ spec:
     #   key: localai-api-key
     # anonymized: false
     # language: english
+  # integrations:
+  #   trivy:
+  #     enabled: true
+  #     namespace: default
   noCache: false
   version: v0.3.41
-  filters: ["Pod"]
+  # filters: ["Pod"]
   repository: ghcr.io/k8sgpt-ai/k8sgpt
 
 
